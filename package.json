@@ -1,0 +1,59 @@
+{
+    "name":        "ipc-pubsub",
+    "version":     "0.9.0",
+    "description": "Inter-Process-Communication Publish-Subscribe",
+    "keywords":    [ "ipc", "publish", "subscribe" ],
+    "main":        "lib/ipc-pubsub.js",
+    "license":     "MIT",
+    "repository": {
+        "type": "git",
+        "url":  "https://github.com/rse/ipc-pubsub.git"
+    },
+    "author": {
+        "name":  "Ralf S. Engelschall",
+        "email": "rse@engelschall.com",
+        "url":   "http://engelschall.com"
+    },
+    "homepage": "https://github.com/rse/ipc-pubsub",
+    "bugs":     "https://github.com/rse/ipc-pubsub/issues",
+    "dependencies": {
+        "bluebird":                                  "~3.5.0",
+        "pattern-emitter":                           "~1.0.0",
+        "mqtt":                                      "~2.7.1",
+        "mqtt-topics":                               "~1.0.2",
+        "node-redis-pubsub":                         "~1.0.2",
+        "babel-runtime":                             "~6.23.0"
+    },
+    "devDependencies": {
+        "grunt":                                     "~1.0.1",
+        "grunt-cli":                                 "~1.2.0",
+        "grunt-contrib-clean":                       "~1.1.0",
+        "grunt-contrib-watch":                       "~1.0.0",
+        "grunt-babel":                               "~6.0.0",
+        "grunt-mocha-test":                          "~0.13.2",
+        "grunt-eslint":                              "~19.0.0",
+        "babel-eslint":                              "~7.2.3",
+        "eslint":                                    "~3.19.0",
+        "eslint-config-standard":                    "~10.2.1",
+        "eslint-plugin-standard":                    "~3.0.1",
+        "eslint-plugin-promise":                     "~3.5.0",
+        "eslint-plugin-import":                      "~2.2.0",
+        "eslint-plugin-node":                        "~4.2.2",
+        "babel-preset-env":                          "~1.4.0",
+        "babel-preset-es2016":                       "~6.24.1",
+        "babel-preset-es2017":                       "~6.24.1",
+        "babel-preset-stage-3":                      "~6.24.1",
+        "babel-preset-stage-2":                      "~6.24.1",
+        "babel-plugin-transform-runtime":            "~6.23.0",
+        "mocha":                                     "~3.3.0",
+        "chai":                                      "~3.5.0"
+    },
+    "engines": {
+        "node":                                      ">=6.0.0"
+    },
+    "scripts": {
+        "prepublish":  "grunt default",
+        "build":       "grunt default",
+        "test":        "grunt default && node tst/rpm-mqtt.js"
+    }
+}

@@ -1,6 +1,6 @@
 {
     "name":        "ipc-pubsub",
-    "version":     "0.9.0",
+    "version":     "0.9.1",
     "description": "Inter-Process-Communication Publish-Subscribe Communication",
     "keywords":    [ "ipc", "publish", "subscribe" ],
     "main":        "lib/ipc-pubsub.js",

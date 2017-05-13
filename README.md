@@ -2,7 +2,7 @@
 IPC-PubSub
 ==========
 
-Inter-Process-Communication (IPC) Publish-Subscribe (PubSub) Abstraction Layer
+Inter-Process-Communication (IPC) Publish-Subscribe (PubSub) Communication Abstraction Layer
 
 <p/>
 <img src="https://nodei.co/npm/ipc-pubsub.png?downloads=true&stars=true" alt=""/>
@@ -14,7 +14,7 @@ About
 -----
 
 This [Node.js](https://nodejs.org) module provides an abstraction layer
-for Inter-Process-Communication through Publish-Subscribe. It
+for Inter-Process-Communication through Publish-Subscribe communication. It
 supports the following modes:
 
 - Single-Process-Model (SPM):<br/>
@@ -88,9 +88,9 @@ interface PubSubSubscription {
 declare class PubSub {
     constructor (url: string);
     open(): Promise<void>;
-    publish(channel, message): Promise<void>;
+    publish(channel: string, message: any): Promise<void>;
     subscribe(channelPattern: string,
-        onMessage: (message, channel) => void): Promise<PubSubSubscription>;
+        onMessage: (message: any, channel: string) => void): Promise<PubSubSubscription>;
     close(): Promise<void>;
 }
 ```

@@ -28,8 +28,8 @@ interface PubSubSubscription {
 declare class PubSub {
     constructor (url: string);
     open(): Promise<void>;
-    publish(channel, message): Promise<void>;
-    subscribe(channelPattern: string, onMessage: (message, channel) => void): Promise<PubSubSubscription>;
+    publish(channel: string, message: any): Promise<void>;
+    subscribe(channelPattern: string, onMessage: (message: any, channel: string) => void): Promise<PubSubSubscription>;
     close(): Promise<void>;
 }
 

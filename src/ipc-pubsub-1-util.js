@@ -29,7 +29,7 @@ export function pattern2regexp (pattern) {
 }
 
 export function pattern2glob (pattern) {
-    return pattern.replace(/([.?*{}])/g, "\\$1")
+    return pattern.replace(/([?*{}])/g, "\\$1")
         .replace(/\+/g, "*")
         .replace(/#/g, "*")
 }

@@ -32,7 +32,7 @@ supports the following modes:
   This is for Node applications split into distinct process, usually
   running also on distinct machines.
   The communication is performed with the help of an external broker.
-  Currently an MQTT broker or the Redis PubSub is supported.
+  Currently a NATS broker, MQTT broker or Redis PubSub is supported.
 
 Installation
 ------------
@@ -69,8 +69,9 @@ The following URLs are supported on `new PubSub(url)`:
 
 - `spm`
 - `mpm`
-- `rpm+mqtt://[<username>:<password>@]<host>[:<port>][/<scope>]`
 - `rpm+redis://[xxx:<secret>@]<host>[:<port>][/<scope>]`
+- `rpm+mqtt://[<username>:<password>@]<host>[:<port>][/<scope>]`
+- `rpm+nats://[<username>:<password>@]<host>[:<port>][/<scope>]`
 
 The channel names are MQTT topic names, i.e., slash-separated strings
 like `foo/bar/quux`. The channel argument of `subscribe(channel, ...)`

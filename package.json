@@ -22,6 +22,7 @@
         "mqtt":                                      "~2.7.1",
         "mqtt-topics":                               "~1.0.2",
         "node-redis-pubsub":                         "~1.0.2",
+        "nats":                                      "~0.7.18",
         "babel-runtime":                             "~6.23.0"
     },
     "devDependencies": {
@@ -54,6 +55,6 @@
     "scripts": {
         "prepublish":  "grunt default",
         "build":       "grunt default",
-        "test":        "grunt default && node tst/rpm-mqtt.js"
+        "test":        "grunt default && node sample/rpm-nats.js"
     }
 }

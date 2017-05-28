@@ -19,7 +19,7 @@
     "dependencies": {
         "bluebird":                                  "~3.5.0",
         "pattern-emitter":                           "~1.0.0",
-        "mqtt":                                      "~2.7.2",
+        "mqtt":                                      "~2.8.0",
         "mqtt-topics":                               "~1.0.2",
         "node-redis-pubsub":                         "~1.0.2",
         "nats":                                      "~0.7.20",
@@ -38,16 +38,16 @@
         "eslint-config-standard":                    "~10.2.1",
         "eslint-plugin-standard":                    "~3.0.1",
         "eslint-plugin-promise":                     "~3.5.0",
-        "eslint-plugin-import":                      "~2.2.0",
+        "eslint-plugin-import":                      "~2.3.0",
         "eslint-plugin-node":                        "~4.2.2",
-        "babel-preset-env":                          "~1.4.0",
+        "babel-preset-env":                          "~1.5.1",
         "babel-preset-es2016":                       "~6.24.1",
         "babel-preset-es2017":                       "~6.24.1",
         "babel-preset-stage-3":                      "~6.24.1",
         "babel-preset-stage-2":                      "~6.24.1",
         "babel-plugin-transform-runtime":            "~6.23.0",
-        "mocha":                                     "~3.4.1",
-        "chai":                                      "~3.5.0"
+        "mocha":                                     "~3.4.2",
+        "chai":                                      "~4.0.0"
     },
     "engines": {
         "node":                                      ">=6.0.0"

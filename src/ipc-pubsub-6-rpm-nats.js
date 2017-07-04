@@ -73,7 +73,7 @@ export default class PubSub {
             callback(data, channel)
         })
         return Promise.resolve({
-            unsubscribe () {
+            unsubscribe: () => {
                 this.client.unsubscribe(ssid)
                 return Promise.resolve()
             }

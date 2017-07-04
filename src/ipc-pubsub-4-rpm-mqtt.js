@@ -92,7 +92,7 @@ export default class PubSub {
         this.client.on("message", handler)
         this.client.subscribe(this.scope + channelPrefix, { qos: 0 })
         return Promise.resolve({
-            unsubscribe () {
+            unsubscribe: () => {
                 this.client.removeListener("message", handler)
                 return Promise.resolve()
             }

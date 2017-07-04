@@ -58,7 +58,7 @@ export default class PubSub {
         }
         this.emitter.on(channelRegexp, handler)
         return Promise.resolve({
-            unsubscribe () {
+            unsubscribe: () => {
                 this.emitter.removeListener(channelRegexp, handler)
                 return Promise.resolve()
             }

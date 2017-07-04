@@ -73,7 +73,7 @@ export default class PubSub {
                     reject(err)
                 else {
                     resolve({
-                        unsubscribe () {
+                        unsubscribe: () => {
                             return new Promise((resolve, reject) => {
                                 unsubscribe((err) => {
                                     if (err) reject(err)

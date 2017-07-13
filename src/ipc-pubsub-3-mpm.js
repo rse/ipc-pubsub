@@ -35,7 +35,9 @@ const clusterWorkers = () => {
 
 /*  Publish-Subscribe for Multi-Process-Model (MPM)  */
 export default class PubSub {
-    constructor (/* url */) {
+    constructor (url) {
+        this.url    = url
+        this.id     = this.url.hostname
         this.opened = false
     }
 
@@ -48,9 +50,9 @@ export default class PubSub {
             if (!(   typeof message === "object"
                   && typeof message.type === "string"))
                 return
-            if (message.type === "PubSub:mpm:master")
+            if (message.type === `PubSub:mpm:${this.id}:master`)
                 this._publishOnMaster(message.channel, message.value)
-            else if (message.type === "PubSub:mpm:worker")
+            else if (message.type === `PubSub:mpm:${this.id}:worker`)
                 this._publishOnWorker(message.channel, message.value)
         }
         if (cluster.isMaster) {
@@ -72,7 +74,7 @@ export default class PubSub {
             return this._publishOnMaster(channel, value)
         else {
             return new Promise((resolve, reject) => {
-                process.send({ type: "PubSub:mpm:master", channel: channel, value: value }, (err) => {
+                process.send({ type: `PubSub:mpm:${this.id}:master`, channel: channel, value: value }, (err) => {
                     if (err) reject(err)
                     else     resolve()
                 })
@@ -83,7 +85,7 @@ export default class PubSub {
         this.emitter.emit(channel, value)
         return Promise.all(clusterWorkers().map((worker) => {
             return new Promise((resolve, reject) => {
-                worker.send({ type: "PubSub:mpm:worker", channel: channel, value: value }, (err) => {
+                worker.send({ type: `PubSub:mpm:${this.id}:worker`, channel: channel, value: value }, (err) => {
                     if (err) reject(err)
                     else     resolve()
                 })

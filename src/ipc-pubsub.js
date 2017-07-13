@@ -37,7 +37,7 @@ class PubSub {
         let urlParsed = URL.parse(url)
         if (url === "spm")
             this.strategy = new PubSubSPM(urlParsed)
-        else if (url === "mpm")
+        else if (urlParsed.protocol === "mpm:")
             this.strategy = new PubSubMPM(urlParsed)
         else if (typeof urlParsed.protocol === "string" && (m = urlParsed.protocol.match(/^rpm(?:\+([a-z]+))?:$/)) !== null) {
             if (m[1] === "mqtt")

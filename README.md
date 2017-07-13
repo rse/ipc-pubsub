@@ -68,7 +68,7 @@ Usage
 The following URLs are supported on `new PubSub(url)`:
 
 - `spm`
-- `mpm`
+- `mpm:<unique-id>`
 - `rpm+redis://[xxx:<secret>@]<host>[:<port>][/<scope>]`
 - `rpm+mqtt://[<username>:<password>@]<host>[:<port>][/<scope>]`
 - `rpm+nats://[<username>:<password>@]<host>[:<port>][/<scope>]`

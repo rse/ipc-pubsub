@@ -13,7 +13,7 @@ const cluster = require("cluster")
         })
     }
 
-    let pubsub = new PubSub("mpm")
+    let pubsub = new PubSub("mpm:foo")
     await pubsub.open()
     await pubsub.subscribe("foo/#", (value, channel) => {
         console.log("RECEIVED", cluster.isMaster, process.pid, value, channel)

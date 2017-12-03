@@ -51,7 +51,7 @@ module.exports = function (grunt) {
                     presets: [
                         [ "env", {
                             "targets": {
-                                "node": 6.0
+                                "node": 8.0
                             }
                         } ],
                         "es2016",

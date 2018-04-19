@@ -121,7 +121,7 @@ export default class PubSub {
         process.removeListener("message", this.messageHandler)
         delete this.messageHandler
         delete this.emitter
-        this.opened = true
+        this.opened = false
         return Promise.resolve()
     }
 }

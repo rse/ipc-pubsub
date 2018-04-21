@@ -64,7 +64,7 @@ Usage
     let pubsub = new PubSub("spm")
     await pubsub.open()
 
-    /*  subscribe for message  */
+    /*  subscribe for messages  */
     await pubsub.subscribe("foo/#", (value, channel) => {
         console.log(value, channel) // -> "quux" "foo/bar"
     })

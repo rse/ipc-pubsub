@@ -73,7 +73,7 @@ The following URLs are supported on `new PubSub(url)`:
 - `rpm+mqtt://[<username>:<password>@]<host>[:<port>][/<scope>]`
 - `rpm+nats://[<username>:<password>@]<host>[:<port>][/<scope>]`
 
-The channel names are MQTT topic names, i.e., slash-separated strings
+The channel names are MQTT-style topic names, i.e., slash-separated strings
 like `foo/bar/quux`. The channel argument of `subscribe(channel, ...)`
 is actually an MQTT topic pattern, i.e., it can contain `*` for single
 element and `#` for remaining elements. For example: `foo/bar/*/quux/#`

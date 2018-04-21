@@ -80,14 +80,14 @@ Usage
 The following URLs are supported on `new PubSub(url)`:
 
 - `spm`
-- `mpm:<unique-id>`
+- `mpm:<scope>`
 - `rpm+redis://[xxx:<secret>@]<host>[:<port>][/<scope>]`
 - `rpm+mqtt://[<username>:<password>@]<host>[:<port>][/<scope>]`
 - `rpm+nats://[<username>:<password>@]<host>[:<port>][/<scope>]`
 
 The channel names are MQTT-style topic names, i.e., slash-separated strings
 like `foo/bar/quux`. The channel argument of `subscribe(channel, ...)`
-is actually an MQTT topic pattern, i.e., it can contain `*` for single
+is actually an MQTT-style topic pattern, i.e., it can contain `*` for single
 element and `#` for remaining elements. For example: `foo/bar/*/quux/#`
 will match `foo/bar/baz/quux/foo`.
 
@@ -99,11 +99,16 @@ interface PubSubSubscription {
     unsubscribe(): Promise<void>;
 }
 declare class PubSub {
-    constructor (url: string);
+    constructor(url: string);
     open(): Promise<void>;
-    publish(channel: string, message: any): Promise<void>;
-    subscribe(channelPattern: string,
-        onMessage: (message: any, channel: string) => void): Promise<PubSubSubscription>;
+    publish(
+        channel: string,
+        message: any
+    ): Promise<void>;
+    subscribe(
+        channelPattern: string,
+        onMessage: (message: any, channel: string) => void
+    ): Promise<PubSubSubscription>;
     close(): Promise<void>;
 }
 ```

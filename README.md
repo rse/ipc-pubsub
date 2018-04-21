@@ -14,25 +14,36 @@ About
 -----
 
 This [Node.js](https://nodejs.org) module provides an abstraction layer
-for Inter-Process-Communication through Publish-Subscribe communication. It
-supports the following modes:
+for Inter-Process-Communication through Publish-Subscribe communication.
+It supports the following modes (in order of increasing process scope
+and overall complexity):
 
 - Single-Process-Model (SPM):<br/>
-  This is for Node applications NOT using the `cluster` module.
-  The communication is performed with an in-memory `PatternEmitter`.
-  No external resource is needed.
+  This is for Node applications NOT using the Node.js
+  [`cluster`](https://nodejs.org/api/cluster.html) module.
+  The communication is performed with an in-memory
+  [`PatternEmitter`](http://npmjs.com/pattern-emitter). No external
+  resource is needed.
 
 - Multi-Process-Model (MPM):<br/>
-  This is for Node applications using the `cluster` module.
-  The communication is performed with an in-memory `PatternEmitter`
-  in each process and an IPC message exchange between the processes
-  with the help of the `cluster` module. No external resource is needed.
+  This is for Node applications using the Node.js
+  [`cluster`](https://nodejs.org/api/cluster.html) module. Hence, it is
+  for Node applications split into distinct (related) processes, running
+  on the same machine. The communication is performed with an in-memory
+  [`PatternEmitter`](http://npmjs.com/pattern-emitter) in each process
+  and an IPC message exchange between the processes with the help of the
+  Node.js [`cluster`](https://nodejs.org/api/cluster.html) module. No
+  external resource is needed.
 
 - Remote-Process-Model (RPM):<br/>
-  This is for Node applications split into distinct process, usually
-  running also on distinct machines.
-  The communication is performed with the help of an external broker.
-  Currently a NATS broker, MQTT broker or Redis PubSub is supported.
+  This is for Node applications split into (unrelated)
+  distinct processes, usually running on distinct machines.
+  The communication is performed with the help of an
+  external broker. Currently a [NATS](https://nats.io/)
+  broker (e.g. [gNATSd](https://github.com/nats-io/gnatsd)),
+  a [MQTT](http://mqtt.org/) broker (e.g.
+  [Mosquitto](https://mosquitto.org/)) or a [Redis](https://redis.io/)
+  [Pub/Sub](https://redis.io/topics/pubsub) is supported.
 
 Installation
 ------------

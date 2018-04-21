@@ -74,7 +74,7 @@ Usage
 
     /*  close connection  */
     await pubsub.close()
-})
+})()
 ```
 
 The following URLs are supported on `new PubSub(url)`:

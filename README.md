@@ -13,10 +13,11 @@ Inter-Process-Communication (IPC) Publish-Subscribe (PubSub) Communication Abstr
 About
 -----
 
-This [Node.js](https://nodejs.org) module provides an abstraction layer
-for Inter-Process-Communication through Publish-Subscribe communication.
-It supports the following modes (in order of increasing process scope
-and overall complexity):
+This [Node.js](https://nodejs.org) module provides an
+abstraction layer for [Inter-Process-Communication
+(IPC)](https://en.wikipedia.org/wiki/Inter-process_communication)
+through Publish-Subscribe communication. It supports the following modes
+(in order of increasing process scope and overall complexity):
 
 - Single-Process-Model (SPM):<br/>
   This is for Node applications NOT using the Node.js

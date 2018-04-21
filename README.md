@@ -19,14 +19,14 @@ abstraction layer for [Inter-Process-Communication
 through Publish-Subscribe communication. It supports the following modes
 (in order of increasing process scope and overall complexity):
 
-- Single-Process-Model (SPM):<br/>
+- **Single-Process-Model (SPM):**<br/>
   This is for Node applications NOT using the Node.js
   [`cluster`](https://nodejs.org/api/cluster.html) module.
   The communication is performed with an in-memory
   [`PatternEmitter`](http://npmjs.com/pattern-emitter). No external
   resource is needed.
 
-- Multi-Process-Model (MPM):<br/>
+- **Multi-Process-Model (MPM):**<br/>
   This is for Node applications using the Node.js
   [`cluster`](https://nodejs.org/api/cluster.html) module. Hence, it is
   for Node applications split into distinct (related) processes, running
@@ -36,7 +36,7 @@ through Publish-Subscribe communication. It supports the following modes
   Node.js [`cluster`](https://nodejs.org/api/cluster.html) module. No
   external resource is needed.
 
-- Remote-Process-Model (RPM):<br/>
+- **Remote-Process-Model (RPM):**<br/>
   This is for Node applications split into (unrelated)
   distinct processes, usually running on distinct machines.
   The communication is performed with the help of an

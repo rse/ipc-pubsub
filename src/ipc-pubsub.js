@@ -29,6 +29,7 @@ import PubSubMPM      from "./ipc-pubsub-3-mpm"
 import PubSubRPMmqtt  from "./ipc-pubsub-4-rpm-mqtt"
 import PubSubRPMredis from "./ipc-pubsub-5-rpm-redis"
 import PubSubRPMnats  from "./ipc-pubsub-6-rpm-nats"
+import PubSubRPMpgsql from "./ipc-pubsub-7-rpm-pgsql"
 
 /*  Publish-Subscribe API  */
 class PubSub {
@@ -46,6 +47,8 @@ class PubSub {
                 this.strategy = new PubSubRPMredis(urlParsed)
             else if (m[1] === "nats")
                 this.strategy = new PubSubRPMnats(urlParsed)
+            else if (m[1] === "pgsql")
+                this.strategy = new PubSubRPMpgsql(urlParsed)
             else
                 throw new Error(`unknown implementation strategy "${url}"`)
         }

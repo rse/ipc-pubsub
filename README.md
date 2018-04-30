@@ -43,8 +43,12 @@ through Publish-Subscribe communication. It supports the following modes
   external broker. Currently a [NATS](https://nats.io/)
   broker (e.g. [gNATSd](https://github.com/nats-io/gnatsd)),
   a [MQTT](http://mqtt.org/) broker (e.g.
-  [Mosquitto](https://mosquitto.org/)) or a [Redis](https://redis.io/)
-  [Pub/Sub](https://redis.io/topics/pubsub) is supported.
+  [Mosquitto](https://mosquitto.org/)), [Redis](https://redis.io/)
+  [Pub/Sub](https://redis.io/topics/pubsub)
+  or [PostgreSQL](https://www.postgresql.org/)
+  [LISTEN](https://www.postgresql.org/docs/10/static/sql-listen.html) /
+  [NOTIFY](https://www.postgresql.org/docs/10/static/sql-notify.html)
+  is supported.
 
 Installation
 ------------
@@ -84,12 +88,14 @@ The following URLs are supported on `new PubSub(url)`:
 - `rpm+redis://[xxx:<secret>@]<host>[:<port>][/<scope>]`
 - `rpm+mqtt://[<username>:<password>@]<host>[:<port>][/<scope>]`
 - `rpm+nats://[<username>:<password>@]<host>[:<port>][/<scope>]`
+- `rpm+pgsql://[<username>:<password>@]<host>[:<port>][/<scope>]`
 
 The channel names are MQTT-style topic names, i.e., slash-separated strings
 like `foo/bar/quux`. The channel argument of `subscribe(channel, ...)`
 is actually an MQTT-style topic pattern, i.e., it can contain `*` for single
 element and `#` for remaining elements. For example: `foo/bar/*/quux/#`
-will match `foo/bar/baz/quux/foo`.
+will match `foo/bar/baz/quux/foo`. The only exception is the PostgreSQL
+mechanism: it does not support any MQTT-style wildcards at all.
 
 Application Programming Interface (API)
 ---------------------------------------

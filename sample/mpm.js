@@ -15,12 +15,18 @@ const cluster = require("cluster")
 
     let pubsub = new PubSub("mpm:foo")
     await pubsub.open()
-    await pubsub.subscribe("foo/#", (value, channel) => {
-        console.log("RECEIVED", cluster.isMaster, process.pid, value, channel)
+    let subscription = await pubsub.subscribe("foo/#", (value, channel) => {
+        console.log("RECEIVED", cluster.isMaster ? "master" : "worker", process.pid, value, channel)
     })
     setTimeout(async () => {
+        console.log("SEND", cluster.isMaster ? "master" : "worker")
         await pubsub.publish("foo/bar", "bar:" + process.pid)
         await pubsub.publish("foo/baz", "baz:" + process.pid)
     }, cluster.isMaster ? 2000 : 1000)
+    setTimeout(async () => {
+        console.log("CLOSE", cluster.isMaster ? "master" : "worker")
+        await subscription.unsubscribe()
+        await pubsub.close()
+    }, 4000)
 })()
 

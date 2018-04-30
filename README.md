@@ -46,8 +46,8 @@ through Publish-Subscribe communication. It supports the following modes
   [Mosquitto](https://mosquitto.org/)), [Redis](https://redis.io/)
   [Pub/Sub](https://redis.io/topics/pubsub)
   or [PostgreSQL](https://www.postgresql.org/)
-  [LISTEN](https://www.postgresql.org/docs/10/static/sql-listen.html) /
-  [NOTIFY](https://www.postgresql.org/docs/10/static/sql-notify.html)
+  [LISTEN](https://www.postgresql.org/docs/current/static/sql-listen.html) /
+  [NOTIFY](https://www.postgresql.org/docs/current/static/sql-notify.html)
   is supported.
 
 Installation

@@ -11,8 +11,8 @@ const PubSub = require("..")
     })
     await pubsub.publish("foo/bar", "bar")
     await pubsub.publish("foo/baz", "baz")
-    setTimeout(async () => {
-        await pubsub.close()
+    setTimeout(() => {
+        pubsub.close()
     }, 1000)
 })()
 

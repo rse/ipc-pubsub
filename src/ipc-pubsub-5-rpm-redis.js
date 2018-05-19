@@ -38,7 +38,7 @@ export default class PubSub {
             throw new Error("already opened")
         let config = {
             host: this.url.hostname,
-            port: parseInt(this.url.port) || 6379
+            port: this.url.port ? parseInt(this.url.port) : 6379
         }
         if (this.url.auth)
             config.auth = this.url.auth.replace(/^[^:]+:/, "")

@@ -19,7 +19,7 @@
     "dependencies": {
         "bluebird":                                  "3.5.1",
         "pattern-emitter":                           "1.0.0",
-        "mqtt":                                      "2.17.0",
+        "mqtt":                                      "2.18.0",
         "mqtt-topics":                               "1.0.2",
         "node-redis-pubsub":                         "2.0.0",
         "pg-pubsub":                                 "0.3.0",
@@ -30,7 +30,7 @@
         "grunt":                                     "1.0.2",
         "grunt-cli":                                 "1.2.0",
         "grunt-contrib-clean":                       "1.1.0",
-        "grunt-contrib-watch":                       "1.0.1",
+        "grunt-contrib-watch":                       "1.1.0",
         "grunt-babel":                               "7.0.0",
         "grunt-mocha-test":                          "0.13.3",
         "grunt-eslint":                              "20.1.0",
@@ -40,11 +40,11 @@
         "eslint-config-standard":                    "11.0.0",
         "eslint-plugin-standard":                    "3.1.0",
         "eslint-plugin-promise":                     "3.7.0",
-        "eslint-plugin-import":                      "2.11.0",
+        "eslint-plugin-import":                      "2.12.0",
         "eslint-plugin-node":                        "6.0.1",
         "babel-preset-env":                          "1.7.0",
         "babel-plugin-transform-runtime":            "6.23.0",
-        "mocha":                                     "5.1.1",
+        "mocha":                                     "5.2.0",
         "chai":                                      "4.1.2"
     },
     "engines": {

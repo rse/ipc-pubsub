@@ -86,7 +86,7 @@ The following URLs are supported on `new PubSub(url)`:
 - `spm`
 - `mpm:<scope>`
 - `rpm+redis://[xxx:<secret>@]<host>[:<port>][/<scope>]`
-- `rpm+mqtt://[<username>:<password>@]<host>[:<port>][/<scope>]`
+- `rpm+mqtt://[<username>:<password>@]<host>[:<port>][/<scope>][?tls=true[&&key=<file>&&crt=<file>&&ca=<file>]]`
 - `rpm+nats://[<username>:<password>@]<host>[:<port>][/<scope>][?tls=true[&&key=<file>&&crt=<file>&&ca=<file>]]`
 - `rpm+pgsql://[<username>:<password>@]<host>[:<port>][/<scope>][?tls=true[&&key=<file>&&crt=<file>&&ca=<file>]]`
 

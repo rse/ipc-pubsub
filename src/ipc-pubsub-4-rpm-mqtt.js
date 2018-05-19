@@ -22,6 +22,7 @@
 **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+import fs          from "fs"
 import MQTT        from "mqtt"
 import MqttTopics  from "mqtt-topics"
 import Promise     from "bluebird"
@@ -38,8 +39,25 @@ export default class PubSub {
         if (this.opened)
             throw new Error("already opened")
         return new Promise((resolve, reject) => {
-            let url = `mqtt://${this.url.hostname}:${this.url.port ? this.url.port : 1883}`
+            let url
             let options = {}
+            if (   this.url.query.tls !== undefined
+                || this.url.query.ca  !== undefined
+                || this.url.query.key !== undefined
+                || this.url.query.crt !== undefined) {
+                url = `mqtts://${this.url.hostname}:${this.url.port ? this.url.port : 8883}`
+                options.rejectUnauthorized = false
+                if (this.url.query.ca !== undefined) {
+                    options.ca = fs.readFileSync(this.url.query.ca).toString()
+                    options.rejectUnauthorized = true
+                }
+                if (this.url.query.key !== undefined)
+                    options.key = fs.readFileSync(this.url.query.key).toString()
+                if (this.url.query.crt !== undefined)
+                    options.cert = fs.readFileSync(this.url.query.crt).toString()
+            }
+            else
+                url = `mqtt://${this.url.hostname}:${this.url.port ? this.url.port : 1883}`
             if (this.url.auth) {
                 options.username = this.url.auth.split(":")[0]
                 options.password = this.url.auth.split(":")[1]

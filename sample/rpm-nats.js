@@ -4,7 +4,7 @@
 const PubSub = require("..")
 
 ;(async () => {
-    let pubsub = new PubSub("rpm+nats://example:example@127.0.0.1:4242/example?tls")
+    let pubsub = new PubSub("rpm+nats://example:example@127.0.0.1:4242/example")
     await pubsub.open()
     await pubsub.subscribe("foo/#", (value, channel) => {
         console.log("GOT", value, channel)

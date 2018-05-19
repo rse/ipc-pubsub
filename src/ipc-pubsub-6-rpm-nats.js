@@ -39,6 +39,10 @@ export default class PubSub {
         let config = {
             url: `nats://${this.url.hostname}:${this.url.port ? parseInt(this.url.port) : 4242}`
         }
+        /* eslint no-console: off */
+        console.log(this.url.protocol)
+        if (this.url.protocol.match(/\+tls:$/))
+            config.tls = { rejectUnauthorized: false }
         if (this.url.auth) {
             config.user = this.url.auth.split(":")[0]
             config.pass = this.url.auth.split(":")[1]

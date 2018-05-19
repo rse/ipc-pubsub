@@ -40,7 +40,8 @@ class PubSub {
             this.strategy = new PubSubSPM(urlParsed)
         else if (urlParsed.protocol === "mpm:")
             this.strategy = new PubSubMPM(urlParsed)
-        else if (typeof urlParsed.protocol === "string" && (m = urlParsed.protocol.match(/^rpm(?:\+([a-z]+))?:$/)) !== null) {
+        else if (typeof urlParsed.protocol === "string"
+            && (m = urlParsed.protocol.match(/^rpm(?:\+([a-z]+)(?:\+([a-z]+))?)?:$/)) !== null) {
             if (m[1] === "mqtt")
                 this.strategy = new PubSubRPMmqtt(urlParsed)
             else if (m[1] === "redis")

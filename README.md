@@ -87,7 +87,7 @@ The following URLs are supported on `new PubSub(url)`:
 - `mpm:<scope>`
 - `rpm+redis://[xxx:<secret>@]<host>[:<port>][/<scope>]`
 - `rpm+mqtt://[<username>:<password>@]<host>[:<port>][/<scope>]`
-- `rpm+nats://[<username>:<password>@]<host>[:<port>][/<scope>]`
+- `rpm+nats[+tls]://[<username>:<password>@]<host>[:<port>][/<scope>]`
 - `rpm+pgsql://[<username>:<password>@]<host>[:<port>][/<scope>]`
 
 The channel names are MQTT-style topic names, i.e., slash-separated strings

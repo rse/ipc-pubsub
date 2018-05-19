@@ -97,6 +97,10 @@ element and `#` for remaining elements. For example: `foo/bar/*/quux/#`
 will match `foo/bar/baz/quux/foo`. The only exception is the PostgreSQL
 mechanism: it does not support any MQTT-style wildcards at all.
 
+Recommendation: As Redis does not support TLS and PostgreSQL does not support
+MQTT-style wildcards, we recommend to use IPC-PubSub primarily with MQTT and
+[Mosquitto](https://mosquitto.org/) or NATS and [gNATSd](https://github.com/nats-io/gnatsd).
+
 Application Programming Interface (API)
 ---------------------------------------
 

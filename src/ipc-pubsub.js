@@ -35,13 +35,13 @@ import PubSubRPMpgsql from "./ipc-pubsub-7-rpm-pgsql"
 class PubSub {
     constructor (url) {
         let m
-        let urlParsed = URL.parse(url)
+        let urlParsed = URL.parse(url, true)
         if (url === "spm")
             this.strategy = new PubSubSPM(urlParsed)
         else if (urlParsed.protocol === "mpm:")
             this.strategy = new PubSubMPM(urlParsed)
         else if (typeof urlParsed.protocol === "string"
-            && (m = urlParsed.protocol.match(/^rpm(?:\+([a-z]+)(?:\+([a-z]+))?)?:$/)) !== null) {
+            && (m = urlParsed.protocol.match(/^rpm(?:\+([a-z]+))?:$/)) !== null) {
             if (m[1] === "mqtt")
                 this.strategy = new PubSubRPMmqtt(urlParsed)
             else if (m[1] === "redis")

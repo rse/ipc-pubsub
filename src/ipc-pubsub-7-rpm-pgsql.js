@@ -22,6 +22,7 @@
 **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+import fs       from "fs"
 import PgPubSub from "pg-pubsub"
 
 /*  Publish-Subscribe for Remote-Process-Model (RPM) with PostgreSQL LISTEN/NOTIFY  */
@@ -47,6 +48,20 @@ export default class PubSub {
         if (this.url.auth) {
             config.user     = this.url.auth.split(":")[0]
             config.password = this.url.auth.split(":")[1]
+        }
+        if (   this.url.query.tls !== undefined
+            || this.url.query.ca  !== undefined
+            || this.url.query.key !== undefined
+            || this.url.query.crt !== undefined) {
+            config.ssl = { rejectUnauthorized: false }
+            if (this.url.query.ca !== undefined) {
+                config.ssl.ca = fs.readFileSync(this.url.query.ca).toString()
+                config.ssl.rejectUnauthorized = true
+            }
+            if (this.url.query.key !== undefined)
+                config.ssl.key = fs.readFileSync(this.url.query.key).toString()
+            if (this.url.query.crt !== undefined)
+                config.ssl.cert = fs.readFileSync(this.url.query.crt).toString()
         }
         this.client = new PgPubSub(config, {
             log: (msg) => {}

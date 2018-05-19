@@ -87,8 +87,8 @@ The following URLs are supported on `new PubSub(url)`:
 - `mpm:<scope>`
 - `rpm+redis://[xxx:<secret>@]<host>[:<port>][/<scope>]`
 - `rpm+mqtt://[<username>:<password>@]<host>[:<port>][/<scope>]`
-- `rpm+nats[+tls]://[<username>:<password>@]<host>[:<port>][/<scope>]`
-- `rpm+pgsql://[<username>:<password>@]<host>[:<port>][/<scope>]`
+- `rpm+nats://[<username>:<password>@]<host>[:<port>][/<scope>][?tls=true[&&key=<file>&&crt=<file>&&ca=<file>]]`
+- `rpm+pgsql://[<username>:<password>@]<host>[:<port>][/<scope>][?tls=true[&&key=<file>&&crt=<file>&&ca=<file>]]`
 
 The channel names are MQTT-style topic names, i.e., slash-separated strings
 like `foo/bar/quux`. The channel argument of `subscribe(channel, ...)`

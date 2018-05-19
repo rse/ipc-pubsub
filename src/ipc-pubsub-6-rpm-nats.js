@@ -22,6 +22,7 @@
 **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+import fs               from "fs"
 import NATS             from "nats"
 import { pattern2glob } from "./ipc-pubsub-1-util"
 
@@ -39,10 +40,20 @@ export default class PubSub {
         let config = {
             url: `nats://${this.url.hostname}:${this.url.port ? parseInt(this.url.port) : 4242}`
         }
-        /* eslint no-console: off */
-        console.log(this.url.protocol)
-        if (this.url.protocol.match(/\+tls:$/))
+        if (   this.url.query.tls !== undefined
+            || this.url.query.ca  !== undefined
+            || this.url.query.key !== undefined
+            || this.url.query.crt !== undefined) {
             config.tls = { rejectUnauthorized: false }
+            if (this.url.query.ca !== undefined) {
+                config.tls.ca = fs.readFileSync(this.url.query.ca).toString()
+                config.tls.rejectUnauthorized = true
+            }
+            if (this.url.query.key !== undefined)
+                config.tls.key = fs.readFileSync(this.url.query.key).toString()
+            if (this.url.query.crt !== undefined)
+                config.tls.cert = fs.readFileSync(this.url.query.crt).toString()
+        }
         if (this.url.auth) {
             config.user = this.url.auth.split(":")[0]
             config.pass = this.url.auth.split(":")[1]

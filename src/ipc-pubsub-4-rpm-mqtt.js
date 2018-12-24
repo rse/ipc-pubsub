@@ -41,27 +41,28 @@ export default class PubSub {
         return new Promise((resolve, reject) => {
             let url
             let options = {}
-            if (   this.url.query.tls !== undefined
-                || this.url.query.ca  !== undefined
-                || this.url.query.key !== undefined
-                || this.url.query.crt !== undefined) {
+            if (   this.url.seachParams !== undefined
+                && (   this.url.seachParams.get("tls")
+                    || this.url.seachParams.get("ca")
+                    || this.url.seachParams.get("key")
+                    || this.url.seachParams.get("crt"))) {
                 url = `mqtts://${this.url.hostname}:${this.url.port ? this.url.port : 8883}`
                 options.rejectUnauthorized = false
-                if (this.url.query.ca !== undefined) {
-                    options.ca = fs.readFileSync(this.url.query.ca).toString()
+                if (this.url.seachParams.get("ca")) {
+                    options.ca = fs.readFileSync(this.url.seachParams.get("ca")).toString()
                     options.rejectUnauthorized = true
                 }
-                if (this.url.query.key !== undefined)
-                    options.key = fs.readFileSync(this.url.query.key).toString()
-                if (this.url.query.crt !== undefined)
-                    options.cert = fs.readFileSync(this.url.query.crt).toString()
+                if (this.url.seachParams.get("key"))
+                    options.key = fs.readFileSync(this.url.seachParams.get("key")).toString()
+                if (this.url.seachParams.get("crt"))
+                    options.cert = fs.readFileSync(this.url.seachParams.get("crt")).toString()
             }
             else
                 url = `mqtt://${this.url.hostname}:${this.url.port ? this.url.port : 1883}`
-            if (this.url.auth) {
-                options.username = this.url.auth.split(":")[0]
-                options.password = this.url.auth.split(":")[1]
-            }
+            if (this.url.username)
+                options.username = this.url.username
+            if (this.url.password)
+                options.password = this.url.password
             if (this.url.pathname)
                 this.scope = this.url.pathname.replace(/^\/([^/]+).*/, "$1/")
             else

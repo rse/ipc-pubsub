@@ -37,7 +37,7 @@ const clusterWorkers = () => {
 export default class PubSub {
     constructor (url) {
         this.url    = url
-        this.id     = this.url.hostname
+        this.id     = this.url.pathname
         this.opened = false
     }
 

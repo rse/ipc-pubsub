@@ -40,24 +40,25 @@ export default class PubSub {
         let config = {
             url: `nats://${this.url.hostname}:${this.url.port ? parseInt(this.url.port) : 4242}`
         }
-        if (   this.url.query.tls !== undefined
-            || this.url.query.ca  !== undefined
-            || this.url.query.key !== undefined
-            || this.url.query.crt !== undefined) {
+        if (   this.url.searchParams !== undefined
+            && (   this.url.searchParams.get("tls")
+                || this.url.searchParams.get("ca")
+                || this.url.searchParams.get("key")
+                || this.url.searchParams.get("crt"))) {
             config.tls = { rejectUnauthorized: false }
-            if (this.url.query.ca !== undefined) {
-                config.tls.ca = fs.readFileSync(this.url.query.ca).toString()
+            if (this.url.searchParams.get("ca")) {
+                config.tls.ca = fs.readFileSync(this.url.searchParams.get("ca")).toString()
                 config.tls.rejectUnauthorized = true
             }
-            if (this.url.query.key !== undefined)
-                config.tls.key = fs.readFileSync(this.url.query.key).toString()
-            if (this.url.query.crt !== undefined)
-                config.tls.cert = fs.readFileSync(this.url.query.crt).toString()
+            if (this.url.searchParams.get("key"))
+                config.tls.key = fs.readFileSync(this.url.searchParams.get("key")).toString()
+            if (this.url.searchParams.get("crt"))
+                config.tls.cert = fs.readFileSync(this.url.searchParams.get("crt")).toString()
         }
-        if (this.url.auth) {
-            config.user = this.url.auth.split(":")[0]
-            config.pass = this.url.auth.split(":")[1]
-        }
+        if (this.url.username)
+            config.user = this.url.username
+        if (this.url.password)
+            config.pass = this.url.password
         if (this.url.pathname)
             this.scope = this.url.pathname.replace(/^\/([^/]+).*/, "$1") + "."
         else

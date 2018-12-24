@@ -40,8 +40,8 @@ export default class PubSub {
             host: this.url.hostname,
             port: this.url.port ? parseInt(this.url.port) : 6379
         }
-        if (this.url.auth)
-            config.auth = this.url.auth.replace(/^[^:]+:/, "")
+        if (this.url.password)
+            config.auth = this.url.password
         if (this.url.pathname)
             config.scope = this.url.pathname.replace(/^\/([^/]+).*/, "$1")
         this.scope = config.scope

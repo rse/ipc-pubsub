@@ -45,23 +45,24 @@ export default class PubSub {
             host: this.url.hostname,
             port: this.url.port ? parseInt(this.url.port) : 5432
         }
-        if (this.url.auth) {
-            config.user     = this.url.auth.split(":")[0]
-            config.password = this.url.auth.split(":")[1]
-        }
-        if (   this.url.query.tls !== undefined
-            || this.url.query.ca  !== undefined
-            || this.url.query.key !== undefined
-            || this.url.query.crt !== undefined) {
+        if (this.url.username)
+            config.user = this.url.username
+        if (this.url.password)
+            config.password = this.url.password
+        if (   this.url.searchParams !== undefined
+            && (   this.url.searchParams.get("tls")
+                || this.url.searchParams.get("ca")
+                || this.url.searchParams.get("key")
+                || this.url.searchParams.get("crt"))) {
             config.ssl = { rejectUnauthorized: false }
-            if (this.url.query.ca !== undefined) {
-                config.ssl.ca = fs.readFileSync(this.url.query.ca).toString()
+            if (this.url.searchParams.get("ca")) {
+                config.ssl.ca = fs.readFileSync(this.url.searchParams.get("ca")).toString()
                 config.ssl.rejectUnauthorized = true
             }
-            if (this.url.query.key !== undefined)
-                config.ssl.key = fs.readFileSync(this.url.query.key).toString()
-            if (this.url.query.crt !== undefined)
-                config.ssl.cert = fs.readFileSync(this.url.query.crt).toString()
+            if (this.url.searchParams.get("key"))
+                config.ssl.key = fs.readFileSync(this.url.searchParams.get("key")).toString()
+            if (this.url.searchParams.get("crt"))
+                config.ssl.cert = fs.readFileSync(this.url.searchParams.get("crt")).toString()
         }
         this.client = new PgPubSub(config, {
             log: (msg) => {}

@@ -35,7 +35,7 @@ import PubSubRPMpgsql from "./ipc-pubsub-7-rpm-pgsql"
 class PubSub {
     constructor (url) {
         let m
-        let urlParsed = URL.parse(url, true)
+        let urlParsed = new URL.URL(url === "spm" ? "spm:" : url)
         if (url === "spm")
             this.strategy = new PubSubSPM(urlParsed)
         else if (urlParsed.protocol === "mpm:")

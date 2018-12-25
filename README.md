@@ -83,12 +83,14 @@ Usage
 
 The following URLs are supported on `new PubSub(url)`:
 
-- `spm`
-- `mpm:<scope>`
-- `rpm+redis://[xxx:<secret>@]<host>[:<port>][/<scope>]`
-- `rpm+mqtt://[<username>:<password>@]<host>[:<port>][/<scope>][?tls=true[&&key=<file>&&crt=<file>&&ca=<file>]]`
-- `rpm+nats://[<username>:<password>@]<host>[:<port>][/<scope>][?tls=true[&&key=<file>&&crt=<file>&&ca=<file>]]`
-- `rpm+pgsql://[<username>:<password>@]<host>[:<port>][/<scope>][?tls=true[&&key=<file>&&crt=<file>&&ca=<file>]]`
+- `spm:<id>`
+- `mpm:<id>`
+- `rpm+redis://[xxx:<secret>@]<host>[:<port>][/<id>]`
+- `rpm+mqtt://[<username>:<password>@]<host>[:<port>][/<id>][?tls=true[&&key=<file>&&crt=<file>&&ca=<file>]]`
+- `rpm+nats://[<username>:<password>@]<host>[:<port>][/<id>][?tls=true[&&key=<file>&&crt=<file>&&ca=<file>]]`
+- `rpm+pgsql://[<username>:<password>@]<host>[:<port>][/<id>][?tls=true[&&key=<file>&&crt=<file>&&ca=<file>]]`
+
+The `<id>` is an arbitrary unique identifier matching the regular expression `^[a-zA-Z][a-zA-Z0-9-]*$`.
 
 The channel names are MQTT-style topic names, i.e., slash-separated strings
 like `foo/bar/quux`. The channel argument of `subscribe(channel, ...)`

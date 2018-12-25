@@ -4,7 +4,7 @@
 const PubSub = require("..")
 
 ;(async () => {
-    let pubsub = new PubSub("spm")
+    let pubsub = new PubSub("spm:foo")
     await pubsub.open()
     await pubsub.subscribe("foo/#", (value, channel) => {
         console.log(value, channel)

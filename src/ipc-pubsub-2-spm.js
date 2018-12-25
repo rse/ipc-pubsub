@@ -27,7 +27,9 @@ import { pattern2regexp } from "./ipc-pubsub-1-util"
 
 /*  Publish-Subscribe for Single-Process-Model (SPM)  */
 export default class PubSub {
-    constructor (/* url */) {
+    constructor (url) {
+        this.url    = url
+        this.id     = this.url.pathname /* currently internally unused */
         this.opened = false
     }
 

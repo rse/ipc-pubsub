@@ -27,7 +27,7 @@ import PatternEmitter     from "pattern-emitter"
 import { pattern2regexp } from "./ipc-pubsub-1-util"
 
 const clusterWorkers = () => {
-    let workers = []
+    const workers = []
     for (const id in cluster.workers)
         workers.push(cluster.workers[id])
     return workers
@@ -101,7 +101,7 @@ export default class PubSub {
     subscribe (channelPrefix, callback) {
         if (!this.opened)
             throw new Error("still not opened")
-        let channelRegexp = new RegExp(`^${pattern2regexp(channelPrefix)}$`)
+        const channelRegexp = new RegExp(`^${pattern2regexp(channelPrefix)}$`)
         const handler = function (message) {
             callback(message, this.event)
         }

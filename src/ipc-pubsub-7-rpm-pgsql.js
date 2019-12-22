@@ -40,7 +40,7 @@ export default class PubSub {
     open () {
         if (this.opened)
             throw new Error("already opened")
-        let config = {
+        const config = {
             database: this.database,
             host: this.url.hostname,
             port: this.url.port ? parseInt(this.url.port) : 5432
@@ -86,7 +86,7 @@ export default class PubSub {
             throw new Error("still not opened")
         if (channelPrefix.match(/[+#]/))
             throw new Error("PostgreSQL LISTEN/NOTIFY mechanism does not support wildcard channels")
-        let channel = channelPrefix.replace(/\//g, "-")
+        const channel = channelPrefix.replace(/\//g, "-")
         const handler = (data) => { callback(data, channelPrefix) }
         this.client.addChannel(channel, handler)
         return Promise.resolve({

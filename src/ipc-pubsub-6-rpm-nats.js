@@ -37,7 +37,7 @@ export default class PubSub {
     open () {
         if (this.opened)
             throw new Error("already opened")
-        let config = {
+        const config = {
             url: `nats://${this.url.hostname}:${this.url.port ? parseInt(this.url.port) : 4242}`
         }
         if (   this.url.searchParams !== undefined
@@ -81,8 +81,8 @@ export default class PubSub {
     subscribe (channelPrefix, callback) {
         if (!this.opened)
             throw new Error("still not opened")
-        let channelGlob = pattern2glob(this.scope + channelPrefix).replace(/\//g, ".")
-        let ssid = this.client.subscribe(channelGlob, {}, (data, reply, channel) => {
+        const channelGlob = pattern2glob(this.scope + channelPrefix).replace(/\//g, ".")
+        const ssid = this.client.subscribe(channelGlob, {}, (data, reply, channel) => {
             if (this.scope)
                 channel = channel.replace(new RegExp(`^${this.scope}`), "")
             channel = channel.replace(/\./g, "/")

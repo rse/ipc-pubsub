@@ -36,7 +36,7 @@ export default class PubSub {
     open () {
         if (this.opened)
             throw new Error("already opened")
-        let config = {
+        const config = {
             host: this.url.hostname,
             port: this.url.port ? parseInt(this.url.port) : 6379
         }
@@ -62,9 +62,9 @@ export default class PubSub {
     subscribe (channelPrefix, callback) {
         if (!this.opened)
             throw new Error("still not opened")
-        let channelGlob = pattern2glob(channelPrefix)
+        const channelGlob = pattern2glob(channelPrefix)
         return new Promise((resolve, reject) => {
-            let unsubscribe = this.client.on(channelGlob, (data, channel) => {
+            const unsubscribe = this.client.on(channelGlob, (data, channel) => {
                 if (this.scope)
                     channel = channel.replace(new RegExp(`^${this.scope}:`), "")
                 callback(data, channel)

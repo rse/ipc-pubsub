@@ -40,7 +40,7 @@ export default class PubSub {
             throw new Error("already opened")
         return new Promise((resolve, reject) => {
             let url
-            let options = {}
+            const options = {}
             if (   this.url.seachParams !== undefined
                 && (   this.url.seachParams.get("tls")
                     || this.url.seachParams.get("ca")

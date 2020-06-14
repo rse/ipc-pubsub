@@ -30,6 +30,7 @@ import PubSubRPMmqtt  from "./ipc-pubsub-4-rpm-mqtt"
 import PubSubRPMredis from "./ipc-pubsub-5-rpm-redis"
 import PubSubRPMnats  from "./ipc-pubsub-6-rpm-nats"
 import PubSubRPMpgsql from "./ipc-pubsub-7-rpm-pgsql"
+import PubSubPM2      from "./ipc-pubsub-8-pm2"
 
 /*  Publish-Subscribe API  */
 class PubSub {
@@ -40,6 +41,8 @@ class PubSub {
             this.strategy = new PubSubSPM(urlParsed)
         else if (urlParsed.protocol === "mpm:")
             this.strategy = new PubSubMPM(urlParsed)
+        else if (urlParsed.protocol === "pm2:")
+            this.strategy = new PubSubPM2(urlParsed)
         else if (typeof urlParsed.protocol === "string"
             && (m = urlParsed.protocol.match(/^rpm(?:\+([a-z]+))?:$/)) !== null) {
             if (m[1] === "mqtt")
